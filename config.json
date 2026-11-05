@@ -1,0 +1,37 @@
+{
+  "camera": {
+    "default_exposure_ms": 100.0,
+    "min_auto_exposure_fraction": 0.75,
+    "max_auto_exposure_fraction": 0.95,
+    "full_well_capacity_electrons": 23000,
+    "adc_depth_bits": 16,
+    "width": 1080,
+    "height": 1920
+  },
+  "rotator": {
+    "port": "COM9",
+    "angle_first_deg": 0.0,
+    "angle_second_deg": 90.0,
+    "settle_time_s": 0.25
+  },
+  "rois": {
+    "track_top": [400, 750],
+    "track_bottom": [1150, 1500],
+    "rochon_beam1": [500, 600, 300, 400],
+    "rochon_beam2": [500, 600, 500, 600]
+  },
+  "wavelength_calibration": {
+    "degree": 2,
+    "coefficients": [0.0, 0.0001, 0.25, 400.0],
+    "reference_points": [
+      {"pixel": 420.0, "wavelength_nm": 526.0},
+      {"pixel": 488.0, "wavelength_nm": 548.0},
+      {"pixel": 627.0, "wavelength_nm": 588.0}
+    ]
+  },
+  "processing": {
+    "auto_compensation_method": "linear",
+    "spectrum_threshold_adu": 50,
+    "glum_threshold": 1.0
+  }
+}

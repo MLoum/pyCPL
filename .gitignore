@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions & generic binaries (sauf les DLLs de la caméra Thorlabs)
+*.so
+*.dylib
+*.dll
+!hardware/sCMOS_Thorlabs/*.dll
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE & editors
+.idea/
+.vscode/
+*.swp
+*~
+.directory
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Test & Acquisition output files (données brutes d'acquisition locales)
+*.csv
+*.tsv
+*.dat
+*.npy
+*.npz
+!data/reference/*.csv
+
+# Log files & crash dumps
+*.log
+
+# Anciens fichiers de config obsolètes
+parameters.ini

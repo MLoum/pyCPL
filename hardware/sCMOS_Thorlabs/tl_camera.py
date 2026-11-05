@@ -12,6 +12,7 @@ import platform
 import struct
 import decimal
 import sys
+import os
 
 import numpy as np
 
@@ -175,7 +176,12 @@ class TLCameraSDK(object):
 
         try:
             if platform.system() == 'Windows':
-                self._sdk = cdll.LoadLibrary(r"thorlabs_tsi_camera_sdk.dll")
+                # Priorite a la DLL locale situee dans le meme dossier que ce script
+                local_dll = os.path.join(os.path.dirname(__file__), "thorlabs_tsi_camera_sdk.dll")
+                if os.path.exists(local_dll):
+                    self._sdk = cdll.LoadLibrary(local_dll)
+                else:
+                    self._sdk = cdll.LoadLibrary(r"thorlabs_tsi_camera_sdk.dll")
             elif platform.system() == 'Linux':
                 try:
                     self._sdk = cdll.LoadLibrary(r"./libthorlabs_tsi_camera_sdk.so")
@@ -1464,17 +1470,6 @@ class TLCamera(object):
         except Exception as exception:
             _logger.error("Could not get frames per trigger range; " + str(exception))
             raise exception
-
-    #    @property
-    #    def calculated_frame_rate_fps(self):
-    #        try:
-    #            calculated_frames_per_second = c_double()
-    #            error_code = self._sdk.tl_camera_get_calculated_frame_rate(self._camera, calculated_frames_per_second)
-    #            if error_code != 0:
-    #                raise TLCameraError(_create_c_failure_message(self._sdk, "tl_camera_", error_code))
-    #            return float(calculated_frames_per_second.value)
-    #        except Exception as exception:
-    #            _logger.error("Could not get calculated frame rate; " + str(exception))
 
     @property
     def usb_port_type(self):
